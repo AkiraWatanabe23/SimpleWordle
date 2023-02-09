@@ -37,13 +37,15 @@
     </head>
 
     <body>
+        <p id="title" class="text-center text-7xl"></p>
         <div class="center">
             <iframe width="400" height="800" scrolling="no"
                 marginwidth="0", marginheight="0" frameborder="0" style="border: none;"></iframe>
             <h2>This is simple 'Wordle'.</h2>
         </div>
 
-        <py-script>
+        <py-script output="title">
+from random import choice
 from wordle import check
 
 words = ["above", "adult", "adapt", "brave", "build",
@@ -54,10 +56,10 @@ words = ["above", "adult", "adapt", "brave", "build",
          "print", "movie", "break", "lemon", "smile"]
 
 if __name__ == '__main__':
-answer = choice(words)
+    answer = choice(words)
 
-while True:
-    check(answer)
+    while True:
+        check(answer)
         </py-script>
     </body>
 </html>
