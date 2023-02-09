@@ -7,7 +7,8 @@ words = ["above", "adult", "adapt", "brave", "build",
          "point", "snake", "unity", "slime", "false",
          "earth", "mouse", "horse", "smart", "clean",
          "shift", "space", "enter", "sweat", "berry",
-         "print", "movie", "break", "lemon", "smile"]
+         "print", "movie", "break", "lemon", "smile",
+         "paint", "order", "click", "shoes", "shirt"]
 
 def check(ans) -> bool:
     '''入力が答えと合っているか判定'''
