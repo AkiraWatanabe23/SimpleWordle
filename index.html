@@ -3,19 +3,61 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=500px, user-scalable=no">
+        <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+        <py-env>
+            - choice
+            - paths:
+              - ./wordle.py
+        </py-env>
+
         <title>Simple-Wordle</title>
-        <style>
+
+        <style type="text/css">
+            a:link {
+                text-decoration: none;
+                color: turquoise;
+            }
+
             body {
                 text-align: center;
                 padding: 0;
                 border: 0;
                 margin: 0;
-                background-color: aliceblue;
+                background-color: rgb(0, 0, 0);
+            }
+
+            .center {
+                border: 1px solid gray;
+                width: 420px;
+                margin-right: auto;
+                margin-left: auto;
             }
         </style>
     </head>
 
     <body>
-        This is simple 'Wordle'.
+        <div class="center">
+            <iframe width="400" height="800" scrolling="no"
+                marginwidth="0", marginheight="0" frameborder="0" style="border: none;"></iframe>
+            <h2>This is simple 'Wordle'.</h2>
+        </div>
+
+        <py-script>
+from wordle import check
+
+words = ["above", "adult", "adapt", "brave", "build",
+         "crime", "drive", "entry", "empty", "giant",
+         "point", "snake", "unity", "slime", "false",
+         "earth", "mouse", "horse", "smart", "clean",
+         "shift", "space", "enter", "sweat", "berry",
+         "print", "movie", "break", "lemon", "smile"]
+
+if __name__ == '__main__':
+answer = choice(words)
+
+while True:
+    check(answer)
+        </py-script>
     </body>
 </html>
