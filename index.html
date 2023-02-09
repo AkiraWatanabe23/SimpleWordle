@@ -2,50 +2,30 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=500px, user-scalable=no">
         <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
         <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
         <py-env>
             - choice
             - paths:
-              - ./wordle.py
+              - ./datas/wordle.py
         </py-env>
 
         <title>Simple-Wordle</title>
-
-        <style type="text/css">
-            a:link {
-                text-decoration: none;
-                color: turquoise;
-            }
-
-            body {
-                text-align: center;
-                padding: 0;
-                border: 0;
-                margin: 0;
-                background-color: rgb(0, 0, 0);
-            }
-
-            .center {
-                border: 1px solid gray;
-                width: 420px;
-                margin-right: auto;
-                margin-left: auto;
-            }
-        </style>
     </head>
 
     <body>
-        <p id="title" class="text-center text-7xl"></p>
-        <div class="center">
-            <iframe width="400" height="800" scrolling="no"
-                marginwidth="0", marginheight="0" frameborder="0" style="border: none;"></iframe>
-            <h2>This is simple 'Wordle'.</h2>
-        </div>
+        <main>
+            <p id="title" class="text-center"></p>
+            <div class="center">
+                <iframe width="400" height="800" scrolling="no"
+                    marginwidth="0", marginheight="0" frameborder="0" style="border: none;"></iframe>
+                <h2>This is simple 'Wordle'.</h2>
+            </div>
+        </main>
 
         <py-script output="title">
-from random import choice
 from wordle import check
 
 words = ["above", "adult", "adapt", "brave", "build",
@@ -55,11 +35,14 @@ words = ["above", "adult", "adapt", "brave", "build",
          "shift", "space", "enter", "sweat", "berry",
          "print", "movie", "break", "lemon", "smile"]
 
+def test():
+    play = check(answer)
+
 if __name__ == '__main__':
     answer = choice(words)
 
     while True:
-        check(answer)
+        test
         </py-script>
     </body>
 </html>
