@@ -1,5 +1,6 @@
 '''wordleテスト'''
 from random import choice
+import cgi
 
 #単語リスト(開始時にこの中からランダムに選ぶ)
 words = ["above", "adult", "adapt", "brave", "build",
@@ -17,7 +18,8 @@ def check(ans) -> bool:
     checking = [' '] * 5
     correct = 0
 
-    get = list(input("5字の英単語を入力してください"))
+    form = cgi.FieldStorage()
+    get = list(form["input"].value)
     #異常な入力が入った場合は再入力
     if len(get) != 5:
         print("もう一度入力してください")
