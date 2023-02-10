@@ -11,6 +11,8 @@ words = ["above", "adult", "adapt", "brave", "build",
          "print", "movie", "break", "lemon", "smile",
          "paint", "order", "click", "shoes", "shirt",
          "field", "apple", "grape", "sweet", "water"]
+form = cgi.FieldStorage()
+get = list(form.getfirst('input'))
 
 def check(ans) -> bool:
     '''入力が答えと合っているか判定'''
@@ -18,8 +20,6 @@ def check(ans) -> bool:
     checking = [' '] * 5
     correct = 0
 
-    form = cgi.FieldStorage()
-    get = list(form["input"].value)
     #異常な入力が入った場合は再入力
     if len(get) != 5:
         print("もう一度入力してください")
