@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Simple-Wordle</title>
         <meta charset="utf-8">
-        <script src="brython/brython.js"></script>
-        <script src="brython/brython_stdlib.js"></script>   
-
+        <title>Simple-Wordle</title>
     </head>
 
-    <body onload="brython()">
+    <body>
         <h2>This is simple 'Wordle'.</h2>
-        <script type="text/python" src="wordle.py"></script>
-        <p>5字の英単語を入力してください
-        <input name="input" type="text" id="word" />
 
-        <br><button id="try">Try!!</button>
+        <form method="post" action="test.py">
+            <p>5字の英単語を入力してください
+            <input name="input" id="input" type="text">
+            <input name="Button1" type="submit" value="try!!">
+        </form>
+
+        <p>
+            {{ form_input }}
+        </p>
     </body>
 </html>
