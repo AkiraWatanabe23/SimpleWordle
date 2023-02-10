@@ -1,71 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=500px, user-scalable=no">
-        <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-
         <title>Simple-Wordle</title>
+        <meta charset="utf-8">
+        <script src="brython/brython.js"></script>
+        <script src="brython/brython_stdlib.js"></script>   
+
     </head>
 
-    <body>
-        <main>
-            <p id="title" class="text-center"></p>
-            <div class="center">
-                <iframe width="400" height="800" scrolling="no"
-                    marginwidth="0", marginheight="0" frameborder="0" style="border: none;"></iframe>
-                <h2>This is simple 'Wordle'.</h2>
-            </div>
-        </main>
+    <body onload="brython()">
+        <h2>This is simple 'Wordle'.</h2>
+        <script type="text/python" src="wordle.py"></script>
+        <p>5字の英単語を入力してください
+        <input type="text" id="word" />
 
-        <py-script output="title">
-from random import choice
-
-#単語リスト(開始時にこの中からランダムに選ぶ)
-words = ["above", "adult", "adapt", "brave", "build",
-            "crime", "drive", "entry", "empty", "giant",
-            "point", "snake", "unity", "slime", "false",
-            "earth", "mouse", "horse", "smart", "clean",
-            "shift", "space", "enter", "sweat", "berry",
-            "print", "movie", "break", "lemon", "smile",
-            "paint", "order", "click", "shoes", "shirt"]
-
-def check(ans) -> bool:
-    li_ans = list(ans)
-    checking = [' '] * 5
-    correct = 0
-
-    get = list(input("5字の英単語を入力してください"))
-    #異常な入力が入った場合は再入力
-    if len(get) != 5:
-        print("もう一度入力してください")
-        return
-
-    #判定処理
-    for i in range(5):
-        if get[i] in ans:
-            if get[i] == li_ans[i]:
-                correct += 1
-                checking[i] = 'o'
-            else:
-                checking[i] = '△'
-
-    #合っていたらクリア
-    if correct == 5:
-        print("Clear!!")
-        return True
-
-    #合っていなかったら現状を出力
-    print(checking)
-    return False
-
-if __name__ == '__main__':
-    answer = choice(words)
-
-    while True:
-        check(answer)            
-        </py-script>
+        <br><button id="try">Try!!</button>
     </body>
 </html>
