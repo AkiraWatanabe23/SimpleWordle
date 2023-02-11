@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Game Test</title>
-    </head>
+{% extends 'game/layout.html' %}
 
-    <body>
-        <ul>
-            {% for task in tasks %}
-                <li>{{ task }}</li>
-            {% endfor %}
-        </ul>
-    </body>
-</html>
+{% block body %}
+    <ul>
+        {% for task in tasks %}
+            <li>{{ task }}</li>
+        {% endfor %}
+    </ul>
+    <a href={% url 'game:add' %}>Add a new task</a>
+{% endblock %}
