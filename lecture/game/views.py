@@ -17,6 +17,16 @@ def index(request):
 
 def add(request):
     '''Listに要素を追加する'''
+    if request.method == "POST":
+        form = NewTaskForm(request.POST)
+        if form.is_valid():
+            task = form.cleaned_data["task"]
+            tasks.append(task)
+        else:
+            return render(request, "game/add.html", {
+                "form": form
+            })
+
     return render(request, "game/add.html", {
         "form": NewTaskForm()
     })
