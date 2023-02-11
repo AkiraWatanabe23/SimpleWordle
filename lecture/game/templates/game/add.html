@@ -3,6 +3,7 @@
 {% block body %}
     <h1>Add Test</h1>
     <form action="{% url 'game:add' %}" method="post">
+        {% csrf_token %}
         <input type="text" name="task">
         <input type="submit">
     </form>
