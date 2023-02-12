@@ -48,19 +48,16 @@ def add(request):
         "form": NewTaskForm()
     })
 
-def check(request):
+def check(get):
     '''判定用の関数'''
-    if "tasks" not in request.session:
-        request.session["tasks"] = []
-
     li_ans = list(answer)
     checking = [' '] * 5
     correct = 0
 
-    get = list(NewTaskForm(request.POST))
+    get = list(get)
     #異常な入力が入った場合は再入力
-    if len(get) != 5:
-        return render(request, "game/play.html")
+    # if len(get) != 5:
+    #     return render(request, "game/play.html")
 
     #判定処理
     for i in range(5):
@@ -73,12 +70,10 @@ def check(request):
 
     #合っていたらクリア
     if correct == 5:
-        return render(request, "game/play.html")
+        return True, "Clear!"
 
     #合っていなかったら現状を出力
-    return render(request, "game/check.html", {
-        "tasks": request.session["tasks"]
-    })
+    return False, checking
 
 def play(request):
     '''テスト'''
@@ -87,11 +82,16 @@ def play(request):
         if form.is_valid():
             task = form.cleaned_data["task"]
             request.session["tasks"] += [task]
-            return HttpResponseRedirect(reverse("game:check"))
+            return HttpResponseRedirect(reverse("game:play"))
         else:
             return render(request, "game/play.html", {
                 "form": form
             })
+
+    # if (check(form)):
+    #     return render(request, "game/check.html", {
+    #         "form": NewTaskForm()
+    #     })
 
     return render(request, "game/play.html", {
         "form": NewTaskForm()

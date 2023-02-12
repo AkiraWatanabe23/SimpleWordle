@@ -1,13 +1,6 @@
 {% extends 'game/layout.html' %}
 
 {% block body %}
-    <h1>re</h1>
-    <ul>
-        {% for task in tasks %}
-            <li>{{ task }}</li>
-        {% empty %}
-            None
-        {% endfor %}
-    </ul>
-    <a href={% url 'game:play' %}>input answer</a>
+    <p>Clear!!</p>
+    <a href={% url 'game:play' %}>Retry</a>
 {% endblock %}
