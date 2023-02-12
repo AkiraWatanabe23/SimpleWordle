@@ -73,7 +73,7 @@ def check(request):
 
     #合っていたらクリア
     if correct == 5:
-        print("Clear!!")
+        return render(request, "game/play.html")
 
     #合っていなかったら現状を出力
     return render(request, "game/check.html", {
