@@ -82,13 +82,16 @@ def play(request):
         if form.is_valid():
             task = form.cleaned_data["task"]
             request.session["tasks"] += [task]
-            return HttpResponseRedirect(reverse("game:play"))
+            if check(form):
+                return HttpResponseRedirect(reverse("game:check"))
+            else:
+                return HttpResponseRedirect(reverse("game:play"))
         else:
             return render(request, "game/play.html", {
                 "form": form
             })
 
-    # if (check(form)):
+    # if check(form):
     #     return render(request, "game/check.html", {
     #         "form": NewTaskForm()
     #     })
