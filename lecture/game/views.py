@@ -34,4 +34,7 @@ def add(request):
     return render(request, "game/add.html", {
         "form": NewTaskForm()
     })
-    
+
+def check(request):
+    '''判定用の関数'''
+    return render(request, "game/index.html")
