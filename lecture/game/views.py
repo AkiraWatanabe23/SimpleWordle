@@ -82,6 +82,7 @@ def play(request):
         if form.is_valid():
             task = form.cleaned_data["task"]
             request.session["tasks"] += [task]
+            #↓ここの条件文を修正...taskがDictなので、値のみを取得するようにする
             if check(task):
                 return HttpResponseRedirect(reverse("game:check"))
             else:
@@ -90,11 +91,6 @@ def play(request):
             return render(request, "game/play.html", {
                 "form": form
             })
-
-    # if check(form):
-    #     return render(request, "game/check.html", {
-    #         "form": NewTaskForm()
-    #     })
 
     return render(request, "game/play.html", {
         "form": NewTaskForm()
