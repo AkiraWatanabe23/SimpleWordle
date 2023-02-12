@@ -1,0 +1,10 @@
+{% extends 'game/layout.html' %}
+
+{% block body %}
+    <ul>
+        {% for task in tasks %}
+            <li>{{ task }}</li>
+        {% endfor %}
+    </ul>
+    <a href={% url 'game:play' %}>Add a new task</a>
+{% endblock %}
