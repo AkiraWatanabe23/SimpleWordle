@@ -50,8 +50,6 @@ def add(request):
 
 def check(get):
     '''判定用の関数'''
-    test = ""
-    ty = ""
     li_ans = list(answer)
     checking = [' '] * 5
     correct = 0
