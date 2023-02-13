@@ -57,6 +57,7 @@ def check(get):
     correct = 0
 
     get_value = list(get)
+    #↓これはbytesを入力された文字列に変更
     aaa = get_value[0][90:len(str(get_value[0]))-1].decode('utf-8')
     #異常な入力が入った場合は再入力
     # if len(get) != 5:
