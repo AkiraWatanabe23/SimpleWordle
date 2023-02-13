@@ -50,7 +50,6 @@ def add(request):
 
 def check(get):
     '''判定用の関数'''
-    test = type(get)
     li_ans = list(answer)
     checking = [' '] * 5
     correct = 0
@@ -81,7 +80,7 @@ def play(request):
     if request.method == "POST":
         form = NewTaskForm(request.POST)
         if form.is_valid():
-            #form.cleaned_data["task"]がDictだったため、taskは指定部分のvalueであると予想している
+            #form.cleaned_dataがDictだったため、taskは指定部分のvalueであると予想している
             task = form.cleaned_data["task"]
             request.session["tasks"] += [task]
             #↓ここの条件文を修正
