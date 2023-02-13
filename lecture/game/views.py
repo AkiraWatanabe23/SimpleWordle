@@ -50,19 +50,20 @@ def add(request):
 
 def check(get):
     '''判定用の関数'''
+    test = type(get)
     li_ans = list(answer)
     checking = [' '] * 5
     correct = 0
 
-    get = list(get)
+    get_value = list(get)
     #異常な入力が入った場合は再入力
     # if len(get) != 5:
     #     return render(request, "game/play.html")
 
     #判定処理
     for i in range(5):
-        if get[i] in li_ans:
-            if get[i] == li_ans[i]:
+        if get_value[i] in li_ans:
+            if get_value[i] == li_ans[i]:
                 correct += 1
                 checking[i] = 'o'
             else:
@@ -80,10 +81,11 @@ def play(request):
     if request.method == "POST":
         form = NewTaskForm(request.POST)
         if form.is_valid():
+            #form.cleaned_data["task"]がDictだったため、taskは指定部分のvalueであると予想している
             task = form.cleaned_data["task"]
             request.session["tasks"] += [task]
-            #↓ここの条件文を修正...taskがDictなので、値のみを取得するようにする
-            if check(task):
+            #↓ここの条件文を修正
+            if check(str(task)):
                 return HttpResponseRedirect(reverse("game:check"))
             else:
                 return HttpResponseRedirect(reverse("game:play"))
