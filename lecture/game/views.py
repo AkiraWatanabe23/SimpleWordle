@@ -57,7 +57,7 @@ def check(get):
     correct = 0
 
     get_value = list(get)
-    aaa = get_value[0].decode('utf-8')
+    aaa = get_value[0][90:len(str(get_value[0]))-1].decode('utf-8')
     #異常な入力が入った場合は再入力
     # if len(get) != 5:
     #     return render(request, "game/play.html")
@@ -73,7 +73,7 @@ def check(get):
         else:
             checking[i] = 'x'
             test = get_value[i]
-            ty = type(get_value[i])
+            ty = type(get_value[i]) # >> bytes
 
     #合っていたらクリア
     if correct == 5:
