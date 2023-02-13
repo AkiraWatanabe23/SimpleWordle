@@ -63,16 +63,14 @@ def check(get):
 
     #判定処理
     for i in range(5):
-        if get_value[i] in li_ans:
-            if get_value[i] == li_ans[i]:
+        if aaa[i] in li_ans:
+            if aaa[i] == li_ans[i]:
                 correct += 1
                 checking[i] = 'o'
             else:
                 checking[i] = '△'
         else:
             checking[i] = 'x'
-            test = get_value[i]
-            ty = type(get_value[i]) # >> bytes
 
     #合っていたらクリア
     if correct == 5:
