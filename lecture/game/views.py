@@ -78,7 +78,8 @@ def check(get):
 def play(request):
     '''テスト'''
     if request.method == "POST":
-        form = NewTaskForm(request.POST)
+        #form = NewTaskForm(request.POST)
+        form = NewTaskForm()
         if form.is_valid():
             #form.cleaned_dataがDictだったため、taskは指定部分のvalueであると予想している
             task = form.cleaned_data["task"]
