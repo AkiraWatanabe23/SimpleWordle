@@ -50,11 +50,14 @@ def add(request):
 
 def check(get):
     '''判定用の関数'''
+    test = ""
+    ty = ""
     li_ans = list(answer)
     checking = [' '] * 5
     correct = 0
 
     get_value = list(get)
+    aaa = get_value[0].decode('utf-8')
     #異常な入力が入った場合は再入力
     # if len(get) != 5:
     #     return render(request, "game/play.html")
@@ -67,6 +70,10 @@ def check(get):
                 checking[i] = 'o'
             else:
                 checking[i] = '△'
+        else:
+            checking[i] = 'x'
+            test = get_value[i]
+            ty = type(get_value[i])
 
     #合っていたらクリア
     if correct == 5:
