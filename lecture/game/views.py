@@ -22,31 +22,43 @@ class NewTaskForm(forms.Form):
     task = forms.CharField(label="5字の英単語を入力してください")
 
 # Create your views here.
-def index(request):
-    '''Listの表示'''
-    if "tasks" not in request.session:
-        request.session["tasks"] = []
+def home(request):
+    '''最初の入力かどうか'''
+    if 'guess' in request.session:
+        guess = request.session['guess']
+    else:
+        guess = None
 
-    return render(request, "game/index.html", {
-        "tasks": request.session["tasks"]
+    if request.method == 'POST':
+        letter_guess = request.POST.get('letter_guess', '')
+        if letter_guess:
+            letter_guess = letter_guess.lower()
+            if len(letter_guess) == 1 and letter_guess.isalpha():
+                if guess:
+                    guess += letter_guess
+                else:
+                    guess = letter_guess
+                request.session['guess'] = guess
+
+    if guess:
+        answer = choice(words)
+        letters = [letter if letter in guess else '_' for letter in answer]
+        game_over = '_' not in letters
+    else:
+        answer = None
+        letters = None
+        game_over = False
+
+    return render(request, 'play.html', {
+        'letters': letters,
+        'game_over': game_over,
+        'guess': guess
     })
 
-def add(request):
-    '''Listに要素を追加する'''
-    if request.method == "POST":
-        form = NewTaskForm(request.POST)
-        if form.is_valid():
-            task = form.cleaned_data["task"]
-            request.session["tasks"] += [task]
-            return HttpResponseRedirect(reverse("index"))
-        else:
-            return render(request, "game/add.html", {
-                "form": form
-            })
-
-    return render(request, "game/add.html", {
-        "form": NewTaskForm()
-    })
+def reset(request):
+    '''リセット'''
+    request.session.flush()
+    return HttpResponseRedirect('/')
 
 def check(get):
     '''判定用の関数'''
