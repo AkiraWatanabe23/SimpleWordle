@@ -15,7 +15,8 @@ words = ["above", "adult", "adapt", "brave", "build",
          "paint", "order", "click", "shoes", "shirt",
          "field", "apple", "grape", "sweet", "water"]
 
-ANSWER = random.choice(words)
+#この変数が、毎回変化している可能性アリ(それは困る)
+answer = random.choice(words)
 
 # class NewTaskForm(forms.Form):
 #     '入力内容の追加、反映'
@@ -23,9 +24,7 @@ ANSWER = random.choice(words)
 
 # Create your views here.
 def home(request):
-    '''最初の入力かどうか'''
-    global ANSWER
-
+    '''最初の入力かどうか、入力の判定'''
     if 'guess' in request.session:
         guess = request.session['guess']
     else:
@@ -44,10 +43,10 @@ def home(request):
 
     if guess:
         #answer = random.choice(words)
-        letters = [letter if letter in guess else '_' for letter in ANSWER]
+        letters = [letter if letter in guess else '_' for letter in answer]
         game_over = '_' not in letters
     else:
-        ANSWER = None
+        #answer = None
         letters = None
         game_over = False
 
