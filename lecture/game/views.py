@@ -71,10 +71,18 @@ def check(get):
 
     #合っていたらクリア
     if correct == 5:
-        return True, "Clear!"
+        result(True, "Clear!")
 
     #合っていなかったら現状を出力
-    return False, checking
+    result(False, checking)
+
+def result(*args):
+    '''判定結果を返す関数(ここでは、renderを返したい)'''
+    if args[0] is True:
+        return False
+    else:
+        return False
+
 
 def play(request):
     '''テスト'''
