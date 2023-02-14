@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1>Add Test</h1>
-    <form action="{% url 'game:check' %}" method="post">
+    <form action="{% url 'game:retry' %}" method="post">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="try!!">

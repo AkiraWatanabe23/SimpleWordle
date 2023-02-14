@@ -76,17 +76,19 @@ def check(get):
     #合っていなかったら現状を出力
     view_result(False, checking)
 
-def view_result(request, *args):
+def view_result(request, result: bool):
     '''判定結果を返す関数(ここでは、renderを返したい)'''
     if "results" not in request.session:
         request.session["results"] = []
 
-    if args[0] is True:
+    if result:
         return render(request, "game/check.html", {
             "results": request.session["results"]
         })
     else:
-        return False
+        return render(request, "game/retry.html", {
+            "results": request.session["results"]
+        })
 
 
 def play(request):
