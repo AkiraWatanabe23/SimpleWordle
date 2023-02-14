@@ -2,5 +2,12 @@
 
 {% block body %}
     <p>Clear!!</p>
+    <ul>
+        {% for task in tasks %}
+            <li>{{ task }}</li>
+        {% empty %}
+            <li>No tasks.</li>
+        {% endfor %}
+    </ul>
     <a href={% url 'game:play' %}>Retry</a>
 {% endblock %}

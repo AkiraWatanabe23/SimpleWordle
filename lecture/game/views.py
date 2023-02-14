@@ -55,22 +55,19 @@ def check(get):
     correct = 0
 
     get_value = list(get)
-    #↓これはbytesを入力された文字列に変更
-    aaa = get_value[0][90:len(str(get_value[0]))-1].decode('utf-8')
+    values = get_value[0][90:len(str(get_value[0]))].decode('utf-8')
     #異常な入力が入った場合は再入力
     # if len(get) != 5:
     #     return render(request, "game/play.html")
 
     #判定処理
     for i in range(5):
-        if aaa[i] in li_ans:
-            if aaa[i] == li_ans[i]:
+        if values[i] in li_ans:
+            if values[i] == li_ans[i]:
                 correct += 1
                 checking[i] = 'o'
             else:
                 checking[i] = '△'
-        else:
-            checking[i] = 'x'
 
     #合っていたらクリア
     if correct == 5:
