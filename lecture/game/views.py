@@ -1,6 +1,6 @@
 '''実行する内容'''
-from random import choice
-from django import forms
+import random
+# from django import forms
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 # from django.urls import reverse
@@ -15,15 +15,17 @@ words = ["above", "adult", "adapt", "brave", "build",
          "paint", "order", "click", "shoes", "shirt",
          "field", "apple", "grape", "sweet", "water"]
 
-# answer = choice(words)
+ANSWER = random.choice(words)
 
-class NewTaskForm(forms.Form):
-    '入力内容の追加、反映'
-    task = forms.CharField(label="5字の英単語を入力してください")
+# class NewTaskForm(forms.Form):
+#     '入力内容の追加、反映'
+#     task = forms.CharField(label="5字の英単語を入力してください")
 
 # Create your views here.
 def home(request):
     '''最初の入力かどうか'''
+    global ANSWER
+
     if 'guess' in request.session:
         guess = request.session['guess']
     else:
@@ -41,15 +43,15 @@ def home(request):
                 request.session['guess'] = guess
 
     if guess:
-        answer = choice(words)
-        letters = [letter if letter in guess else '_' for letter in answer]
+        #answer = random.choice(words)
+        letters = [letter if letter in guess else '_' for letter in ANSWER]
         game_over = '_' not in letters
     else:
-        answer = None
+        ANSWER = None
         letters = None
         game_over = False
 
-    return render(request, 'play.html', {
+    return render(request, 'game/play.html', {
         'letters': letters,
         'game_over': game_over,
         'guess': guess

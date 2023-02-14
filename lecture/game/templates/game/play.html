@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'game/layout.html' %}
 
 {% block body %}
     <h1>Add Test</h1>
@@ -14,7 +14,7 @@
         </p>
         <form method="post">
             {% csrf_token %}
-            <label></label>
+            <label for="letter_guess">Enter a letter:</label>
             <input type="text" name="letter_guess" />
             <input type="submit" value="Guess" />
         </form>
@@ -24,6 +24,6 @@
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="try!!">
-    </form> {% endcomment %}
-    <!--<a href={% url 'play' %}>check result</a>-->
+    </form>
+    <!--<a href={% url 'play' %}>check result</a>--> {% endcomment %}
 {% endblock %}
