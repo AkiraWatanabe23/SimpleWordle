@@ -71,15 +71,20 @@ def check(get):
 
     #合っていたらクリア
     if correct == 5:
-        result(True, "Clear!")
+        view_result(True, "Clear!")
 
     #合っていなかったら現状を出力
-    result(False, checking)
+    view_result(False, checking)
 
-def result(*args):
+def view_result(request, *args):
     '''判定結果を返す関数(ここでは、renderを返したい)'''
+    if "results" not in request.session:
+        request.session["results"] = []
+
     if args[0] is True:
-        return False
+        return render(request, "game/check.html", {
+            "results": request.session["results"]
+        })
     else:
         return False
 
@@ -91,10 +96,10 @@ def play(request):
         form = NewTaskForm()
         if form.is_valid():
             #form.cleaned_dataがDictだったため、taskは指定部分のvalueであると予想している
-            task = form.cleaned_data["task"]
-            request.session["tasks"] += [task]
+            result = form.cleaned_data["result"]
+            request.session["results"] += [result]
             #↓ここの条件文を修正
-            if check(str(task)):
+            if check(str(result)):
                 return HttpResponseRedirect(reverse("game:check"))
             else:
                 return HttpResponseRedirect(reverse("game:play"))

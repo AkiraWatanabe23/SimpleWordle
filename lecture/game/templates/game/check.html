@@ -5,7 +5,7 @@
         {% for task in tasks %}
             <li>{{ task }}</li>
         {% empty %}
-            <li>No tasks.</li>
+            <li>No results.</li>
         {% endfor %}
     </ul>
     <a href={% url 'game:play' %}>Retry</a>
