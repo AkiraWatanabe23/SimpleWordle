@@ -2,10 +2,10 @@
 
 {% block body %}
     <h1>Add Test</h1>
-    <form action="{% url 'game:add' %}" method="post">
+    <form action="{% url 'add' %}" method="post">
         {% csrf_token %}
         {{ form }}
         <input type="submit">
     </form>
-    <a href={% url 'game:index' %}>view task</a>
+    <a href={% url 'index' %}>view task</a>
 {% endblock %}

@@ -38,7 +38,7 @@ def add(request):
         if form.is_valid():
             task = form.cleaned_data["task"]
             request.session["tasks"] += [task]
-            return HttpResponseRedirect(reverse("game:index"))
+            return HttpResponseRedirect(reverse("index"))
         else:
             return render(request, "game/add.html", {
                 "form": form
@@ -102,9 +102,9 @@ def play(request):
             request.session["results"] += [result]
             #↓ここの条件文を修正
             if check(str(result)):
-                return HttpResponseRedirect(reverse("game:result"))
+                return HttpResponseRedirect(reverse("result"))
             else:
-                return HttpResponseRedirect(reverse("game:play"))
+                return HttpResponseRedirect(reverse("play"))
         else:
             return render(request, "game/play.html", {
                 "form": form
