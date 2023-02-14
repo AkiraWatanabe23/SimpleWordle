@@ -102,7 +102,7 @@ def play(request):
             request.session["results"] += [result]
             #↓ここの条件文を修正
             if check(str(result)):
-                return HttpResponseRedirect(reverse("game:check"))
+                return HttpResponseRedirect(reverse("game:result"))
             else:
                 return HttpResponseRedirect(reverse("game:play"))
         else:
