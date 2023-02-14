@@ -82,7 +82,7 @@ def view_result(request, result: bool):
         request.session["results"] = []
 
     if result:
-        return render(request, "game/check.html", {
+        return render(request, "game/clear.html", {
             "results": request.session["results"]
         })
     else:
