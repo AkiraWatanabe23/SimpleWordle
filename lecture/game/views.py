@@ -17,13 +17,16 @@ def home(request):
         answer = random.choice(words.Words)
     else:
         guess = None
-        answer = None
+        request.session['guess'] = guess
+        #answer = None
+        answer = random.choice(words.Words)
 
     if request.method == 'POST':
         letter_guess = request.POST.get('letter_guess', '')
         if letter_guess:
             letter_guess = letter_guess.lower()
-            if len(letter_guess) == 1 and letter_guess.isalpha():
+            #str.isalpha()...文字列内の文字が全英字で、かつ1字以上のときTrue
+            if letter_guess.isalpha():
                 if guess:
                     guess += letter_guess
                 else:
@@ -32,14 +35,16 @@ def home(request):
 
     if guess:
         letters = [letter if letter in guess else '_' for letter in answer]
-        game_over = '_' not in letters
+        game_clear = '_' not in letters
+        print("aaa", answer)
     else:
         letters = None
-        game_over = False
+        game_clear = False
+        print("bbb", answer)
 
     return render(request, 'game/play.html', {
         'letters': letters,
-        'game_over': game_over,
+        'game_clear': game_clear,
         'guess': guess
     })
 

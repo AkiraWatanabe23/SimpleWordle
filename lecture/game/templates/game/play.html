@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1>Add Test</h1>
-    {% if game_over %}
+    {% if game_clear %}
         <p>Clear!!</p>
         <p><a href="{% url 'reset' %}">Play again</a></p>
     {% else %}
