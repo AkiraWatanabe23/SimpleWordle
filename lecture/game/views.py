@@ -7,15 +7,17 @@ from django.shortcuts import render
 # from django.urls import reverse
 
 #この変数が、毎回変化している可能性アリ(それは困る)
-answer = random.choice(words.Words)
+#answer = random.choice(words.Words)
 
 # Create your views here.
 def home(request):
     '''最初の入力かどうか、入力の判定'''
     if 'guess' in request.session:
         guess = request.session['guess']
+        answer = random.choice(words.Words)
     else:
         guess = None
+        answer = None
 
     if request.method == 'POST':
         letter_guess = request.POST.get('letter_guess', '')
@@ -29,11 +31,9 @@ def home(request):
                 request.session['guess'] = guess
 
     if guess:
-        #answer = random.choice(words)
         letters = [letter if letter in guess else '_' for letter in answer]
         game_over = '_' not in letters
     else:
-        #answer = None
         letters = None
         game_over = False
 
