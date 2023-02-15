@@ -8,6 +8,12 @@
     {% else %}
         <p>Guess Word!!</p>
         <p>
+            How to play:</br>
+            Please input 5 letter English word.
+            If the alphabet in your answer, <span style="color: #B59F3B"> that alphabet's color become yellow, </span></br>
+            and if that's place is correct, <span style="color: #538D4E"> that alphabet's color become green. </span>
+        </p>
+        <p>
             {% for letter in letters %}
                 {{ letter }}
             {% endfor %}
@@ -19,11 +25,4 @@
             <input type="submit" value="Guess" />
         </form>
     {% endif %}
-
-    {% comment %} <form action="{% url 'result' %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="try!!">
-    </form>
-    <!--<a href={% url 'play' %}>check result</a>--> {% endcomment %}
 {% endblock %}
