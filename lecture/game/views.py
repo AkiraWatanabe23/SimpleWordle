@@ -34,6 +34,7 @@ def home(request):
                 request.session['guess'] = guess
 
     if guess:
+        #この内包表記の動きが分からない
         letters = [letter if letter in guess else '_' for letter in answer]
         game_clear = '_' not in letters
         print("aaa", answer)
