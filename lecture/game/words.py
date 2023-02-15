@@ -1,5 +1,5 @@
 '''単語リスト(開始時にこの中からランダムに選ぶ)'''
-words = [
+Words = [
   "aargh", "aback", "abaft", "aboon", "about", "above", "abuse", "accel", "acute", "adieu",
   "adios", "admit", "adopt", "adown", "adult", "afoot", "afore", "afoul", "after", "again",
   "agape", "agent", "agogo", "agone", "agree", "ahead", "ahull", "alack", "alcon", "alife",
