@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 # from django.urls import reverse
 
-#この変数が、毎回変化している可能性アリ(それは困る)
+#この変数が毎回変化している可能性アリ(それは困る)
 #answer = random.choice(words.Words)
 
 # Create your views here.
@@ -19,7 +19,7 @@ def home(request):
         guess = None
         request.session['guess'] = guess
         #answer = None
-        answer = random.choice(words.Words)
+        #answer = random.choice(words.Words)
 
     if request.method == 'POST':
         letter_guess = request.POST.get('letter_guess', '')
@@ -34,8 +34,16 @@ def home(request):
                 request.session['guess'] = guess
 
     if guess:
-        #この内包表記の動きが分からない
-        letters = [letter if letter in guess else '_' for letter in answer]
+        letters = [n if n in guess else '_' for n in answer]
+        #↓個人の解釈(書き換えるとこんな感じ?)
+        # ---
+        # letters = []
+        # for n in letters:
+        #     if n in answer:
+        #         letters.append(n)
+        #     else:
+        #         letters.append('_')
+        # ---
         game_clear = '_' not in letters
         print("aaa", answer)
     else:
