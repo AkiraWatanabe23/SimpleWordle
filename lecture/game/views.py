@@ -47,7 +47,7 @@ def home(request):
         game_clear = '_' not in letters
         print("aaa", answer)
     else:
-        letters = None
+        letters = ['_' * 5]
         game_clear = False
         print("bbb", answer)
 
